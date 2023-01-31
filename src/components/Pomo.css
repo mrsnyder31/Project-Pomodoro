@@ -1,0 +1,69 @@
+.pomo__container {
+    display: flex;
+    flex-flow: column nowrap;
+    min-height: 92.6vh;
+    align-items: center;
+}
+
+
+.pomo__window {
+    /* border: 2px solid black; */
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px 0px 30px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 50%;
+    
+}
+
+.pomo__btn{
+    border:none;
+    color: white;
+    margin: 0px;
+    border-radius: 4px;
+    /* font-family: ArialRounded; */
+    font-size: 16px;
+    padding: 2px 12px;
+    height: 28px;
+    cursor: pointer;
+    background: none;
+    box-shadow: none;
+    font-weight: 300;
+}
+
+#pomo__btn__start {
+        cursor: pointer;
+        border: none;
+        margin: 20px 0px 0px;
+        padding: 0px 12px;
+        border-radius: 4px;
+        box-shadow: rgb(235 235 235) 0px 6px 0px;
+        /* font-family: ArialRounded; */
+        font-size: 22px;
+        height: 55px;
+        color: rgb(125, 83, 162);
+        font-weight: bold;
+        width: 180px;
+        background-color: white;
+        transition: color 0.5s ease-in-out 0s;
+}
+
+#pomo__timer__text {
+    color: aliceblue;
+    font-size: 100px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#pomo__btn__main {
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+
+ 
+  
+  
+ 
+ 
