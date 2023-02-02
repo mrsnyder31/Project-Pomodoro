@@ -107,19 +107,15 @@ export const Timer = () => {
 
 
 const SetBreakStyles = () => {
-    // document.getElementById("pomo__btn__break").style.opacity = 1;
     document.getElementById("pomo__btn__break").style = "font-weight: bold";
     document.getElementById("pomo__btn__break").style.background = "rgba(0, 0, 0, 0.15)";
-    // document.getElementById("pomo__btn__main").style.opacity = 0;
     document.getElementById("pomo__btn__main").style = "font-weight: 300";
     document.getElementById("pomo__btn__main").style.background = "none";
 }
 
 const SetMainStyles = () => {
-    // document.getElementById("pomo__btn__main").style.opacity = 1;
     document.getElementById("pomo__btn__main").style = "font-weight: bold";
     document.getElementById("pomo__btn__main").style.background = "rgba(0, 0, 0, 0.15)";
-    // document.getElementById("pomo__btn__break").style.opacity = 0;
     document.getElementById("pomo__btn__break").style = "font-weight: 300";
     document.getElementById("pomo__btn__break").style.background = "none";
 }

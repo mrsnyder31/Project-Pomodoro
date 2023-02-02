@@ -19,10 +19,8 @@
 
 .pomo__btn{
     border:none;
-    color: white;
-    margin: 0px;
+    color: aliceblue;
     border-radius: 4px;
-    /* font-family: ArialRounded; */
     font-size: 16px;
     padding: 2px 12px;
     height: 28px;
@@ -30,6 +28,7 @@
     background: none;
     box-shadow: none;
     font-weight: 300;
+    margin: 5px;
 }
 
 #pomo__btn__start {
@@ -39,19 +38,18 @@
         padding: 0px 12px;
         border-radius: 4px;
         box-shadow: rgb(235 235 235) 0px 6px 0px;
-        /* font-family: ArialRounded; */
         font-size: 22px;
-        height: 55px;
+        height: 50px;
         color: rgb(125, 83, 162);
         font-weight: bold;
-        width: 180px;
-        background-color: white;
+        width: 160px;
+        background-color: aliceblue;
         transition: color 0.5s ease-in-out 0s;
 }
 
 #pomo__timer__text {
     color: aliceblue;
-    font-size: 100px;
+    font-size: 90px;
     font-weight: bold;
     margin-top: 20px;
 }
@@ -62,8 +60,131 @@
 }
 
 
+.pomo__project__container{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    padding: 10px 0px;
+    border-radius: 6px;
+    text-align: center;
+    width: 50%;
+}
+
+#pomo__btn__new__project{
+    background-color: rgba(255, 255, 255, 0.055);
+    border: 2px dashed rgba(255, 255, 255, 0.4);
+    color: rgba(240, 248, 255, 0.774);
+    font-size: 25px;
+    height: 50px;
+    padding: 5px;
+    width: 100%;
+
+}
  
-  
-  
+.pomo__project__form{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+
+    /* background-color: rgba(255, 255, 255); */
+    border: 2px solid  rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: rgba(240, 248, 255, 0.774);
+    font-size: 25px;
+    text-align: center;
+    width: 100%;
+   
+}
+
+.pomo__form__item{
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    height: 100%;
+    width: 100%;
+}
+
+.pomo__form__field{
+    border-radius: 4px;
+    font-size: 22px;
+    padding: 10px 0px;
+    box-shadow: none;
+    border: none;
+    color:aliceblue;
+    width: 100%;
+    box-sizing: border-box;
+    font-weight: bold;
+    padding: 10px;
+    /* background-color: rgba(255, 255, 255, 0.1); */
+}
+
+
+input {
+    height: 30px;
+    width: 90%;
+    background-color: rgba(255, 255, 255, 0); 
+} 
+::placeholder {
+    color: rgba(243, 243, 243, 0.411);
+}
  
+#pomo__btn__new__task{
+    /* background-color: rgba(255, 255, 255, 0.055); */
+    color: rgba(240, 248, 255, 0.774);
+    border: 2px dashed rgba(255, 255, 255, 0.4);
+    font-size: 15px;
+    height: 40px;
+    
+    width: 90%;
+
+}
+
+#pomo__btn__save{
+    background: rgba(33, 54, 66, 0.534);
+    margin-left: 10px;
+    
+}
  
+.pomo__task__field{
+    border-radius: 4px;
+    font-size: 18px;
+    padding: 10px 0px;
+    box-shadow: none;
+    border: none;
+    color: aliceblue;
+    width: 90%;
+    box-sizing: border-box;
+    padding: 10px;
+    /* background-color: rgba(255, 255, 255, 0.1); */
+}
+
+.pomo__project__title{
+    color: aliceblue;
+    border-bottom: 4px solid rgba(240, 248, 255, 0.774);
+   
+    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 15px;
+    padding: 5px 0px;
+
+}
+.pomo__display__container{
+    width: 90%;
+}
+.task__btn{
+    font-size: 18px;
+    width: 100%;
+    text-align: left;
+    
+}
+
+.pomo__task__item{
+    display: flex;
+    /* flex-flow: row nowrap; */
+    /* justify-content: space-between; */
+    
+
+    border: 2px solid rgba(240, 248, 255, 0.774);
+    border-radius: 6px;
+    margin: 5px 0px;
+    
+}
