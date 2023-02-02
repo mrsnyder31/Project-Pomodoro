@@ -43,7 +43,7 @@ export const ApplicationViews = () => {
 
                     ?
                    
-                    <ProjectDisplay setFunction={setProjectDisplay} />
+                    <ProjectDisplay setFunction={setProjectDisplay} setForm={setProjectForm} />
                     
                     :
 

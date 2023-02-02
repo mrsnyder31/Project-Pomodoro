@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react"
-import { FetchProjects, FetchTasks, PostTask } from "../data/DataAccess"
+import { useNavigate } from "react-router-dom"
+import { DeleteProject, DeleteTask, EditProject, FetchProjects, FetchTasks, PostTask } from "../data/DataAccess"
 import { TaskForm } from "./TaskForm"
 
-export const ProjectDisplay = ({setFunction}) => {
+export const ProjectDisplay = ({setFunction, setForm}) => {
+
+    const navigate = useNavigate()
     const [task, setTask] = useState(false)
     const [taskObject, setTaskObject] = useState({
         name: "",
@@ -12,6 +15,7 @@ export const ProjectDisplay = ({setFunction}) => {
         
     })
     const [taskArray, setTaskArray] = useState([])
+    const [gross, setGross] = useState(true)
     const [projectArray, setProjectArray] = useState([])
     const [currentProject, setCurrentProject] = useState({})
 
@@ -20,7 +24,7 @@ export const ProjectDisplay = ({setFunction}) => {
         .then((data) => {
             setTaskArray(data)
         })
-    },[task])
+    },[task, gross])
 
     useEffect(()=>{
         FetchProjects()
@@ -35,25 +39,32 @@ return  <>
     <div className="pomo__display__container">
 
         {
-            //display project where pomoUser.id === pA.userId && pA.isCurrent
+ 
                 projectArray.map(pA => {
-                    if (pA.id === 1){
-                        return<div className="pomo__project__title"> <header>{pA.name}</header> </div>
+                    if (pA.id === currentProject?.id){
+                        return<div key={`projectMap--${pA.id}`} className="pomo__project__title"> <header>{pA.name}</header> </div>
                     }
                 })
         }
         
         
         {
-            //display tasks where tA.projectId === useState=currentProject.id 
+
                 taskArray.map(tA => {
-                    if (tA.projectId === 1){
-                        return<div className="pomo__task__item">
-                            {/* <button className="pomo__btn">o</button>    */}
+                    if (tA.projectId === currentProject?.id){
+                        return<div key={`taskMap--${tA.id}`} className="pomo__task__item">
                             <button className="pomo__btn task__btn">{tA.name}</button>
                             <button className="pomo__btn"
                                     onClick={()=>{
-                                        alert("i can't go this way...")
+                                       
+                                        DeleteTask(tA.id)
+                                        setGross(false)
+                                        // .then(()=>{setTask(true)})
+                                        // .then(()=>{setTask(false)})
+                                        // navigate(0)
+                                        // setTask(true)
+                                        // setTask(false)
+                                        // setTask(false)
 
                                     }}>
                                 x
@@ -78,24 +89,30 @@ return  <>
 
 
         <TaskForm setTaskObject={setTaskObject} taskObject={taskObject} />
-        <button className="pomo__btn" 
-                onClick={()=>{
-                    document.getElementById("pomo__task__here").innerHTML = ""
-                    setTask(false)
-                }}>
-            Cancel
-        </button>
+        <div className="btn_holder">
+        
+            <button className="pomo__btn" id="pomo__btn__cancel"
+                    onClick={()=>{
+                        document.getElementById("pomo__task__here").innerHTML = ""
+                        setTask(false)
+                    }}>
+                Cancel
+            </button>
 
-        <button className="pomo__btn" id="pomo__btn__save" 
-                onClick={()=>{
-                    document.getElementById("pomo__task__here").innerHTML = ""
-                    PostTask(taskObject)
-                    setTask(false)
-                    
-                    
-                }}>
-            Save
-        </button>
+            <button className="pomo__btn" id="pomo__btn__save" 
+                    onClick={()=>{
+                        document.getElementById("pomo__task__here").innerHTML = ""
+                        const copy = {...taskObject}
+                        copy.projectId = currentProject.id
+                        PostTask(copy)
+                
+                        setTask(false)
+                        setTask(false)
+    
+                    }}>
+                Save 
+            </button>
+        </div>
         </>
 
         :
@@ -110,8 +127,37 @@ return  <>
                     }}>
             + Add Task
             </button>
-        <button className="pomo__btn"onClick={()=>{alert("i should probably sleep first...")}}>Delete Project</button>
-        <button className="pomo__btn"onClick={()=>{alert("i should probably sleep first...")}}>Complete Project</button>
+        <div className="btn_holder">    
+            <button className="pomo__btn"
+                    onClick={()=>{
+                        taskArray.forEach(task => {
+                            if(task.projectId === currentProject.id){
+                            DeleteTask(task.id)}
+                        });
+                        DeleteProject(currentProject.id)
+                        setFunction(false)
+                        setForm(false)
+                        //!! Needs the rerender - set task not working
+                        setForm(true)
+                    setFunction(true)
+                       
+                    }}>
+                Delete Project
+            </button>
+
+            <button className="pomo__btn"
+                onClick={()=>{
+                    const copy = {...currentProject}
+                    copy.isComplete = true
+                    copy.isCurrent = false
+                    EditProject(copy)
+                    setForm(false)
+                    setFunction(false)
+                
+                }}>
+                Complete Project
+            </button>
+        </div>
         </>
     }
 

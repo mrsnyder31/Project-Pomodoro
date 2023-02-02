@@ -28,18 +28,35 @@ export const FetchProjects = () => {
    .then(res => res.json())
 }
 
-export const DeleteProject = () => {
-    return fetch("http://localhost:8088/projects"), {method: "DELETE"}
+export const DeleteProject = (id) => {
+    return fetch(`http://localhost:8088/projects/${id}`, {method: "DELETE"})
 }
 
-export const DeleteTask = () => {
-   return fetch("http://localhost:8088/tasks"), {method: "DELETE"}
+export const DeleteTask = (id) => {
+   return fetch(`http://localhost:8088/tasks/${id}`, {method: "DELETE"})
+
 }
 
-export const EditProject = () => {
-    return fetch("http://localhost:8088/projects"), {method: "PUT"}
+export const EditProject = (obj) => {
+    return fetch(`http://localhost:8088/projects/${obj.id}`, 
+    { 
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(obj)
+    })
+    .then(res => res.json())
 }
 
-export const EditTask = () => {
-    return fetch("http://localhost:8088/tasks"), {method: "PUT"}
+export const EditTask = (obj) => {
+    
+    return fetch(`http://localhost:8088/tasks/${obj.id}`, 
+    { 
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(obj)
+    })
+    .then(res => res.json())
 }
+
+
+    
