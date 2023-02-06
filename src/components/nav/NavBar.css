@@ -1,7 +1,11 @@
-.navbar {
+.navbar__container {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    margin-top: 16px;
+    margin-left: auto;
+    margin-right: auto;
+   
 }
 
 .navbar__item {
@@ -19,7 +23,7 @@
     margin-left: 10px;
     font-size: 13px;
     padding: 8px 12px;
-    min-width: 70px;
+    min-width: 50px;
     border: none;
     color: white
 }
@@ -30,5 +34,6 @@
 
 .navbar__home {
     margin-right: auto;
+    margin-left: 0px;
 }
 

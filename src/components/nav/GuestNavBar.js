@@ -4,11 +4,11 @@ export const GuestNavBar = () => {
 
 
 
-    
+
     const navigate = useNavigate()
     return <>
      
-     <ul className="navbar">
+     <ul className="navbar__container">
                 <li className="navbar__item navbar__home">
                     <Link className="navbar__link" to="/">Home</Link>
                 </li>

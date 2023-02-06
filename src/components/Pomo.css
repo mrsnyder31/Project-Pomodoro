@@ -1,11 +1,19 @@
 .pomo__container {
     display: flex;
     flex-flow: column nowrap;
-    min-height: 94.8vh;
+    min-height: 96.5vh;
     align-items: center;
+  
     
 }
-
+.pomo__guest__container {
+    display: flex;
+    flex-flow: column nowrap;
+    min-height: 94.5vh;
+    align-items: center;
+  
+    
+}
 
 .pomo__window {
     /* border: 2px solid black; */
@@ -213,7 +221,7 @@ input {
 .pomo__stored__projects__container {
     display: flex;
     flex-flow: column nowrap;
-    min-height: 94.8vh;
+    min-height: 92.9vh;
     align-items: center;
     margin-top: 3%;
 }
@@ -222,12 +230,13 @@ input {
     border-radius: 6px;
     padding: 10px;
     margin: 10px;
+    width: 35%;
 }
 
 .pomo__settings__container {
     display: flex;
     flex-flow: column nowrap;
-    min-height: 93.7vh;
+    min-height: 92.9vh;
     align-items: center;
     margin-top: 3%;
 }

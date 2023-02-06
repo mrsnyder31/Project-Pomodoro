@@ -26,7 +26,7 @@ export const GuestView = () => {
 
     return <>
    
-        <div className="pomo__container">
+        <div className="pomo__guest__container">
 
             <Timer  />
             

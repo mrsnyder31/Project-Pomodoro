@@ -12,9 +12,12 @@ export const ProjectForm = ({setFunction, setProject}) => {
 
     const [task, setTask] = useState(false)
 
+    const localPomoUser = localStorage.getItem("pomo_user")
+    const PomoUser = JSON.parse(localPomoUser)
+
     const [projectObject, setProjectObject] = useState({
         name: "",
-        userId: 1,
+        userId: PomoUser.id,
         isCurrent: true,
         isComplete: false
 

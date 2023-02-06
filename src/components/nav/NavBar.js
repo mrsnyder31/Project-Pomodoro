@@ -24,7 +24,7 @@ export const NavBar = () => {
                 login 
                 ?
                 
-                <ul className="navbar">
+                <div className="navbar__container">
                 <li className="navbar__item navbar__home">
                     <Link className="navbar__link" to="/">Home</Link>
                 </li>
@@ -41,7 +41,7 @@ export const NavBar = () => {
                         navigate("/", { replace: true })
                     }}>Logout</Link>
                 </li>
-            </ul>
+            </div>
             :
             <GuestNavBar />
             }   

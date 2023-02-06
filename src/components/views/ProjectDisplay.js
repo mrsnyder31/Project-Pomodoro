@@ -7,6 +7,7 @@ export const ProjectDisplay = ({setFunction, setForm}) => {
 
     const navigate = useNavigate()
     const [task, setTask] = useState(false)
+    const [trigger, setTrigger] = useState(false)
     const [taskObject, setTaskObject] = useState({
         name: "",
         projectId: 1,
@@ -23,7 +24,7 @@ export const ProjectDisplay = ({setFunction, setForm}) => {
         .then((data) => {
             setTaskArray(data)
         })
-    },[task])
+    },[task, trigger])
 
     useEffect(()=>{
         FetchProjects()
@@ -32,7 +33,7 @@ export const ProjectDisplay = ({setFunction, setForm}) => {
             setCurrentProject(current)
             setProjectArray(data)
         })
-    },[task])
+    },[task, trigger])
 
 return  <>
     <div className="pomo__display__container">
@@ -57,12 +58,9 @@ return  <>
                                     onClick={()=>{
                                        
                                         DeleteTask(tA.id)
-                                      
-                                            setTask(true)
-                                      
-                                            setTask(false)
+                                        
+                                        setTrigger(!trigger)
 
-                                          //!! Needs the rerender - set task not working
 
                                     }}>
                                 x
@@ -103,11 +101,11 @@ return  <>
                         const copy = {...taskObject}
                         copy.projectId = currentProject.id
                         PostTask(copy)
-                        // alert("touched")
+                        
+
                         setTask(false)
-                        
-                        
-                           //!! Needs the rerender - set task not always working
+                        setTrigger(!trigger)
+                    
     
                     }}>
                 Save 

@@ -1,9 +1,23 @@
 import { useEffect, useState } from "react"
-import { FetchProjects, FetchTasks } from "../data/DataAccess"
+import { DeleteProject, DeleteTask, EditProject, FetchProjects, FetchTasks } from "../data/DataAccess"
+import { useNavigate } from "react-router-dom"
+
 
 export const StoredProjects = () => {
-    const [projects, setProjects] = useState([{id: 0, name: "Create a new Project"}])
-    const [tasks, setTasks] = useState([{id: 0, name: "Create a new Task"}])
+
+    const localPomoUser = localStorage.getItem("pomo_user")
+    const PomoUser = JSON.parse(localPomoUser)
+
+    const [login, setLogin] = useState({})
+    const [trigger, setTrigger] = useState(true)
+
+    useEffect(()=>{
+        setLogin(PomoUser)
+    },[])
+    
+    const navigate = useNavigate()
+    const [projects, setProjects] = useState([])
+    const [tasks, setTasks] = useState([])
 
     useEffect(()=>{
         FetchProjects()
@@ -12,13 +26,13 @@ export const StoredProjects = () => {
             setProjects(data)
            
         })
-    },[])
+    },[trigger])
     useEffect(()=>{
         FetchTasks()
         .then((data) => {
             setTasks(data)
         })
-    },[])
+    },[trigger])
 
 
     return <>
@@ -26,9 +40,10 @@ export const StoredProjects = () => {
         
             {
                 projects.map(proj => {
-                    return <>
-                    <div className="give__me__borders">
-                     <div key={`projectDisplayMap--${proj.id}`} className="pomo__project__title"> <header>{proj.name}</header> </div>
+                    if(PomoUser.id === proj.userId)
+                    return <div key={`displayContainer--${proj.id}${proj.name}`} className="give__me__borders">
+                   
+                     <div key={`projectDisplayMap--${proj.id}`} className="pomo__project__title"> <header>{proj.name} </header> </div>
                 {
 
                     tasks.map(tA => {
@@ -39,11 +54,40 @@ export const StoredProjects = () => {
                         }
                     })
                 }
+
+                        <button className="pomo__btn"
+                            // onClick={()=>{
+                            //     const copy = {...currentProject}
+                            //     copy.isComplete = false
+                            //     copy.isCurrent = true
+                            //     EditProject(copy)
+                            //     setForm(true)
+                            //     setFunction(true)
+                            
+                            // }}
+                            >
+                            Resume Project
+                        </button>
+
+
+                        <button className="pomo__btn" 
+                         onClick={()=>{
+                            tasks.forEach(task => {
+                                if(task.projectId === proj.id){
+                                DeleteTask(task.id)}
+                            });
+                            DeleteProject(proj.id)
+                            setTrigger(!trigger)
+                            
+                         
+                            
+                           
+                        }}>Delete Project</button>
                     </div>
-                    </>
+                   
                 })
             }
-        
+            
         </div>
         
     </>
