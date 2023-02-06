@@ -1,0 +1,22 @@
+.pomo__container__login{
+    display: flex;
+    align-items: center;
+    flex-flow: column nowrap;
+    padding-top: 15%;
+    min-height: 101.8vh;
+    text-align: center;
+    color: aliceblue;
+}
+
+
+.pomo__form__login{
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px 0px 30px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    text-align: center;
+
+}
+.form-control {
+    margin: 5px;
+}

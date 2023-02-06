@@ -12,3 +12,6 @@ code {
     monospace;
 }
 
+#root {
+  margin-top: -17px;
+}

@@ -15,7 +15,6 @@ export const ProjectDisplay = ({setFunction, setForm}) => {
         
     })
     const [taskArray, setTaskArray] = useState([])
-    const [gross, setGross] = useState(true)
     const [projectArray, setProjectArray] = useState([])
     const [currentProject, setCurrentProject] = useState({})
 
@@ -24,7 +23,7 @@ export const ProjectDisplay = ({setFunction, setForm}) => {
         .then((data) => {
             setTaskArray(data)
         })
-    },[task, gross])
+    },[task])
 
     useEffect(()=>{
         FetchProjects()
@@ -52,19 +51,18 @@ return  <>
 
                 taskArray.map(tA => {
                     if (tA.projectId === currentProject?.id){
-                        return<div key={`taskMap--${tA.id}`} className="pomo__task__item">
+                        return<div key={`taskMapper--${tA.id}`} className="pomo__task__item">
                             <button className="pomo__btn task__btn">{tA.name}</button>
                             <button className="pomo__btn"
                                     onClick={()=>{
                                        
                                         DeleteTask(tA.id)
-                                        setGross(false)
-                                        // .then(()=>{setTask(true)})
-                                        // .then(()=>{setTask(false)})
-                                        // navigate(0)
-                                        // setTask(true)
-                                        // setTask(false)
-                                        // setTask(false)
+                                      
+                                            setTask(true)
+                                      
+                                            setTask(false)
+
+                                          //!! Needs the rerender - set task not working
 
                                     }}>
                                 x
@@ -105,9 +103,11 @@ return  <>
                         const copy = {...taskObject}
                         copy.projectId = currentProject.id
                         PostTask(copy)
-                
+                        // alert("touched")
                         setTask(false)
-                        setTask(false)
+                        
+                        
+                           //!! Needs the rerender - set task not always working
     
                     }}>
                 Save 
@@ -137,9 +137,8 @@ return  <>
                         DeleteProject(currentProject.id)
                         setFunction(false)
                         setForm(false)
-                        //!! Needs the rerender - set task not working
-                        setForm(true)
-                    setFunction(true)
+                     
+                        
                        
                     }}>
                 Delete Project

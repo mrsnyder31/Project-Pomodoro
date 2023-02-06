@@ -30,25 +30,25 @@ export const Login = () => {
     }
 
     return (
-        <main className="container--login">
+        <main className="pomo__container__login">
             <section>
-                <form className="form--login" onSubmit={handleLogin}>
-                    <h1>Pomodoro</h1>
-                    <h2>Please sign in</h2>
-                    <fieldset>
-                        <label htmlFor="inputEmail"> Email address </label>
+                    <h1> Project Pomodoro</h1>
+                    <h4>Login</h4>
+                <form className="pomo__form__login" onSubmit={handleLogin}>
+                    
+                        <label className="pomo__email" htmlFor="inputEmail"> Email address </label>
                         <input type="email"
                             value={email}
                             onChange={evt => set(evt.target.value)}
                             className="form-control"
                             placeholder="Email address"
                             required autoFocus />
-                    </fieldset>
-                    <fieldset>
-                        <button type="submit">
+                    
+                  
+                        <button className="pomo__btn" type="submit">
                             Sign in
                         </button>
-                    </fieldset>
+                  
                 </form>
             </section>
             <section className="link--register">

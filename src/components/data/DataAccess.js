@@ -16,6 +16,7 @@ export const PostTask = (taskObject) => {
         },
         body: JSON.stringify(taskObject)
     })
+    
 }
 
 export const FetchTasks = () => {
@@ -58,5 +59,14 @@ export const EditTask = (obj) => {
     .then(res => res.json())
 }
 
-
+export const PostUser = (customer) => {
+    return fetch("http://localhost:8088/users", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(customer)
+    })
+        .then(res => res.json())
+}
     

@@ -1,24 +1,18 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { PostUser } from "../data/DataAccess"
 import "./Login.css"
 
 export const Register = (props) => {
     const [customer, setCustomer] = useState({
         email: "",
-        fullName: "",
-        isStaff: false
+        name: "",
+        
     })
     let navigate = useNavigate()
 
     const registerNewUser = () => {
-        return fetch("http://localhost:8088/users", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(customer)
-        })
-            .then(res => res.json())
+        return PostUser(customer)
             .then(createdUser => {
                 if (createdUser.hasOwnProperty("id")) {
                     localStorage.setItem("pomo_user", JSON.stringify({
@@ -57,11 +51,11 @@ export const Register = (props) => {
     return (
         <main style={{ textAlign: "center" }}>
             <form className="form--login" onSubmit={handleRegister}>
-                <h1 className="h3 mb-3 font-weight-normal">Please Register for Honey Rae Repairs</h1>
+                <h1 className="h3 mb-3 font-weight-normal">Please Register for Project Pomodoro</h1>
                 <fieldset>
                     <label htmlFor="fullName"> Full Name </label>
                     <input onChange={updateCustomer}
-                           type="text" id="fullName" className="form-control"
+                           type="text" id="name" className="form-control"
                            placeholder="Enter your name" required autoFocus />
                 </fieldset>
                 <fieldset>
@@ -69,15 +63,6 @@ export const Register = (props) => {
                     <input onChange={updateCustomer}
                         type="email" id="email" className="form-control"
                         placeholder="Email address" required />
-                </fieldset>
-                <fieldset>
-                    <input onChange={(evt) => {
-                        const copy = {...customer}
-                        copy.isStaff = evt.target.checked
-                        setCustomer(copy)
-                    }}
-                        type="checkbox" id="isStaff" />
-                    <label htmlFor="email"> I am an employee </label>
                 </fieldset>
                 <fieldset>
                     <button type="submit"> Register </button>
