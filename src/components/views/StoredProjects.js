@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
-import { DeleteProject, DeleteTask, EditProject, FetchProjects, FetchTasks } from "../data/DataAccess"
+import { DeleteProject, DeleteTask, FetchProjects, FetchTasks } from "../data/DataAccess"
 import { useNavigate } from "react-router-dom"
-
 
 export const StoredProjects = () => {
 
@@ -15,14 +14,13 @@ export const StoredProjects = () => {
         setLogin(PomoUser)
     },[])
     
-    const navigate = useNavigate()
     const [projects, setProjects] = useState([])
     const [tasks, setTasks] = useState([])
 
     useEffect(()=>{
         FetchProjects()
         .then((data) => {
-            // const current = data.find(project => project.isCurrent)
+
             setProjects(data)
            
         })
@@ -33,7 +31,6 @@ export const StoredProjects = () => {
             setTasks(data)
         })
     },[trigger])
-
 
     return <>
         <div className="pomo__stored__projects__container">
@@ -55,20 +52,9 @@ export const StoredProjects = () => {
                     })
                 }
 
-                        <button className="pomo__btn"
-                            // onClick={()=>{
-                            //     const copy = {...currentProject}
-                            //     copy.isComplete = false
-                            //     copy.isCurrent = true
-                            //     EditProject(copy)
-                            //     setForm(true)
-                            //     setFunction(true)
-                            
-                            // }}
-                            >
+                        <button className="pomo__btn">
                             Resume Project
                         </button>
-
 
                         <button className="pomo__btn" 
                          onClick={()=>{
@@ -78,10 +64,7 @@ export const StoredProjects = () => {
                             });
                             DeleteProject(proj.id)
                             setTrigger(!trigger)
-                            
-                         
-                            
-                           
+
                         }}>Delete Project</button>
                     </div>
                    

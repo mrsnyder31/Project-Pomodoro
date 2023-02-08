@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 
-
 export const Timer = () => {
 
     const [time, setTime] = useState(25)
@@ -16,7 +15,6 @@ export const Timer = () => {
         }
     },
         [time])
-
 
     return <>
 
@@ -44,7 +42,6 @@ export const Timer = () => {
 
 
             <div id="pomo__timer__text">`${time}:00`</div>
-
 
             <div id="pomo__timer__playback__container">
                 <button className="pomo__btn" id="pomo__btn__start" onClick={
@@ -89,12 +86,6 @@ export const Timer = () => {
                         
                     }
                   
-
-
-
-
-
-
                     }
                 }>
                     Start</button>

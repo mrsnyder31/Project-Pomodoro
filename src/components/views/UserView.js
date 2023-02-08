@@ -9,7 +9,6 @@ export const UserView = () => {
     const [projectForm, setProjectForm] = useState(false)
     const [projectDisplay, setProjectDisplay] = useState(false)
 
-
     useEffect(()=>{
         FetchProjects()
         .then((data) =>{

@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react"
 import { FetchProjects } from "../data/DataAccess"
-import { ProjectDisplay } from "./ProjectDisplay"
-import { ProjectForm } from "./ProjectForm"
 import { Timer } from "./Timer"
 
 export const GuestView = () => {
         
     const [projectForm, setProjectForm] = useState(false)
     const [projectDisplay, setProjectDisplay] = useState(false)
-
 
     useEffect(()=>{
         FetchProjects()

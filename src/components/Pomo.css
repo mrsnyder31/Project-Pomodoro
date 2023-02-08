@@ -3,20 +3,17 @@
     flex-flow: column nowrap;
     min-height: 96.5vh;
     align-items: center;
-  
-    
+   
 }
 .pomo__guest__container {
     display: flex;
     flex-flow: column nowrap;
     min-height: 94.5vh;
     align-items: center;
-  
     
 }
 
 .pomo__window {
-    /* border: 2px solid black; */
     background-color: rgba(255, 255, 255, 0.1);
     padding: 20px 0px 30px;
     border-radius: 6px;
@@ -76,8 +73,6 @@
     flex-flow: column nowrap;
     align-items: center;
     padding: 10px 0px;
-    /* border: 2px solid rgba(240, 248, 255, 0.774); */
-    /* border-radius: 6px; */
     margin-bottom: 2%;
     min-width: 400px;
     max-width: 500px;
@@ -99,8 +94,6 @@
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-
-    /* background-color: rgba(255, 255, 255); */
     border: 2px solid  rgba(255, 255, 255, 0.1);
     border-radius: 6px;
     color: rgba(240, 248, 255, 0.774);
@@ -128,7 +121,7 @@
     box-sizing: border-box;
     font-weight: bold;
     padding: 10px;
-    /* background-color: rgba(255, 255, 255, 0.1); */
+
 }
 
 
@@ -142,7 +135,7 @@ input {
 }
  
 #pomo__btn__new__task{
-    /* background-color: rgba(255, 255, 255, 0.055); */
+
     color: rgba(240, 248, 255, 0.774);
     border: 2px dashed rgba(255, 255, 255, 0.4);
     font-size: 15px;
@@ -186,7 +179,7 @@ input {
     box-sizing: border-box;
     margin: 5px 0px;
     padding: 10px;
-    /* background-color: rgba(255, 255, 255, 0.1); */
+
 }
 
 .pomo__project__title{
