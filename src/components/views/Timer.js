@@ -1,18 +1,23 @@
 import { useEffect, useState } from "react"
 
 
-export const Timer = () => {
+export const Timer = ({displaySettings, setDisplaySettings}) => {
 
     const [time, setTime] = useState(25)
     const [paused, updatePause] = useState(false)
 
     useEffect(() => {
+        
         document.getElementById("pomo__timer__text").innerHTML = `${time}:00`
         if (time === 25) {
-            document.getElementById("root").style.backgroundColor = 'rgb(57, 112, 151)'
+            document.getElementById("root").style.backgroundColor = displaySettings
+            setDisplaySettings(displaySettings)
+            // document.getElementById("root").style.backgroundColor = 'rgb(57, 112, 151)'
+            // setDisplaySettings('rgb(57, 112, 151)')
         }
         if (time === 5) {
             document.getElementById("root").style.backgroundColor = 'rgb(125, 83, 162)'
+            setDisplaySettings('rgb(125, 83, 162)')
         }
     },
         [time])
@@ -27,6 +32,8 @@ export const Timer = () => {
 
                     setTime(25)
                     SetMainStyles()
+                    setDisplaySettings(displaySettings)
+                    // setDisplaySettings('rgb(57, 112, 151)')
                     document.getElementById("give__timer__too").innerHTML = `25:00 - Work Hard!`
                 }
             }>Pomo
@@ -37,6 +44,7 @@ export const Timer = () => {
 
                     setTime(5)
                     SetBreakStyles()
+                    setDisplaySettings('rgb(125, 83, 162)')
                     document.getElementById("give__timer__too").innerHTML = `05:00 - Play Hard!`
                 }
             }>Break
@@ -54,7 +62,7 @@ export const Timer = () => {
                         let seconds = 59
 
                         
-                        const counter = setInterval(timer, 10)
+                        const counter = setInterval(timer, 1)
 
                         function timer() {
                             seconds--

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { PostUser } from "../data/DataAccess"
 import "./Login.css"
 
-export const Register = (props) => {
+export const Register = () => {
     const [customer, setCustomer] = useState({
         email: "",
         name: "",
@@ -32,11 +32,11 @@ export const Register = (props) => {
             .then(res => res.json())
             .then(response => {
                 if (response.length > 0) {
-                    // Duplicate email. No good.
+                   
                     window.alert("Account with that email address already exists")
                 }
                 else {
-                    // Good email, create user.
+                  
                     registerNewUser()
                 }
             })

@@ -4,11 +4,17 @@ import { ProjectDisplay } from "./ProjectDisplay"
 import { ProjectForm } from "./ProjectForm"
 import { Timer } from "./Timer"
 
-export const UserView = () => {
+export const UserView = ({settings, setSettings}) => {
     
     const [projectForm, setProjectForm] = useState(false)
     const [projectDisplay, setProjectDisplay] = useState(false)
 
+    const [displaySettings, setDisplaySettings] = useState(settings)
+    
+
+    useEffect(()=>{
+        setSettings(displaySettings)
+    },[displaySettings])
 
     useEffect(()=>{
         FetchProjects()
@@ -28,7 +34,7 @@ export const UserView = () => {
    
         <div className="pomo__container">
 
-            <Timer  />
+            <Timer displaySettings={displaySettings} setDisplaySettings={setDisplaySettings} />
             
             <div className="pomo__project__container">
             

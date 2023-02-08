@@ -1,16 +1,9 @@
 import { useState } from "react"
-import { PostProject, PostTask } from "../data/DataAccess"
-import { TaskForm } from "./TaskForm"
+import { PostProject} from "../data/DataAccess"
+
 
 export const ProjectForm = ({setFunction, setProject}) => {
 
-    const htmlForm = () => {
-        
-    return document.getElementById("pomo__task__here").innerHTML += `<section><input type="text" class="pomo__task__field" placeholder="Task?"/></section>`   
-    
-    }
-
-    const [task, setTask] = useState(false)
 
     const localPomoUser = localStorage.getItem("pomo_user")
     const PomoUser = JSON.parse(localPomoUser)
@@ -36,34 +29,22 @@ return  <>
 
         <div id="pomo__task__here"></div>
     
-        {
-           task
-           ?
-          <>
-            <button className="pomo__btn" onClick={()=>{setFunction(false)}}>Cancel</button>
-            <button className="pomo__btn" id="pomo__btn__save" onClick={()=>{}}>Save</button>
-          </>
-           :
-           <>
-            <button className="pomo__btn" onClick={()=>{
-           
+        
+        <button className="pomo__btn" onClick={()=>{
+            
                 setFunction(false)
                 }}>
             Cancel
-            </button>
+        </button>
 
-            <button className="pomo__btn" id="pomo__btn__save" onClick={()=>{
+        <button className="pomo__btn" id="pomo__btn__save" onClick={()=>{
                 
                 PostProject(projectObject)
                 setProject(true)
                 }}>
             Save
-            </button>
+        </button>
             
-           </>
-        }
-       
-
        
     </div>
 </div>

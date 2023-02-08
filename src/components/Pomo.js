@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import { Route, Routes } from "react-router-dom"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
@@ -11,8 +12,13 @@ import { StoredProjects } from "./views/StoredProjects"
 
 
 export const Pomo = () => {
-    return <>
 
+	const [userSettings, setUserSettings] = useState("rgb(57, 112, 151)")
+	
+	// console.log(userSettings)
+
+    return <>
+	
 	 <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -21,7 +27,7 @@ export const Pomo = () => {
 			// <Authorized>
 			<>
 					<NavBar />
-					<ApplicationViews />
+					<ApplicationViews userSettings={userSettings} setUserSettings={setUserSettings} />
 				</>
 			// </Authorized>
 			
@@ -36,7 +42,7 @@ export const Pomo = () => {
 		 <Route path="/settings" element={
 			<>
 			<NavBar />
-			<Settings />
+			<Settings setUserSettings={setUserSettings} />
 			</>
 		 } />
 
