@@ -1,8 +1,7 @@
 import { useState } from "react"
 
 export const TaskForm = ({setTaskObject, taskObject}) => {
-    
-    // const flygon = document.getElementById("pomo__task__here").innerHTML
+
     return <>
     
     <div className="pomo__task__field__container">

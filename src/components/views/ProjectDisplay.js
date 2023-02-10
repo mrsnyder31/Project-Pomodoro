@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { DeleteProject, DeleteTask, EditProject, EditTask, FetchProjects, FetchTasks, PostTask } from "../data/DataAccess"
+import { DeleteProject, DeleteTask, EditProject, EditTask, FetchProjects, FetchSettings, FetchTasks, PostTask } from "../data/DataAccess"
 import { TaskForm } from "./TaskForm"
 
 export const ProjectDisplay = ({setFunction, setForm}) => {
-   
+
     const navigate = useNavigate()
     const [task, setTask] = useState(false)
     const [trigger, setTrigger] = useState(false)
@@ -18,6 +18,7 @@ export const ProjectDisplay = ({setFunction, setForm}) => {
     const [taskArray, setTaskArray] = useState([])
     const [projectArray, setProjectArray] = useState([])
     const [currentProject, setCurrentProject] = useState({})
+
 
     useEffect(()=>{
         FetchTasks()
@@ -35,12 +36,15 @@ export const ProjectDisplay = ({setFunction, setForm}) => {
         })
     },[task, trigger])
 
+    
+
     const Rerender = () => {
       
             setTask(false)
             setTrigger(!trigger)
     
     }
+
 return  <>
     <div className="pomo__display__container">
 

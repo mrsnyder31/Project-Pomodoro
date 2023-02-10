@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { DeleteProject, DeleteTask, EditProject, FetchProjects, FetchTasks } from "../data/DataAccess"
+import { DeleteProject, DeleteTask, EditProject, FetchProjects, FetchSettings, FetchTasks } from "../data/DataAccess"
 import { useNavigate } from "react-router-dom"
 
 
@@ -20,9 +20,13 @@ export const StoredProjects = () => {
     const [tasks, setTasks] = useState([])
 
     useEffect(()=>{
+        FetchSettings().then((data)=>{ document.getElementById("root").style.backgroundColor = data[0].pomoColor})
+        
+    },[])
+
+    useEffect(()=>{
         FetchProjects()
         .then((data) => {
-            // const current = data.find(project => project.isCurrent)
             setProjects(data)
            
         })
@@ -37,7 +41,7 @@ export const StoredProjects = () => {
 
     return <>
         <div className="pomo__stored__projects__container">
-        
+        <h1> {PomoUser.name}'s Projects</h1>
             {
                 projects.map(proj => {
                     if(PomoUser.id === proj.userId)
@@ -48,29 +52,19 @@ export const StoredProjects = () => {
 
                     tasks.map(tA => {
                         if (tA.projectId === proj.id){
-                            return <div key={`taskDisplayMap--${tA.id}`} className="pomo__task__item">
+                            return <div key={`taskDisplayMap--${tA.id}`} className="pomo__stored__item">
                                 <header className="">{tA.name}</header> 
                             </div>
                         }
                     })
                 }
 
-                        <button className="pomo__btn"
-                            // onClick={()=>{
-                            //     const copy = {...currentProject}
-                            //     copy.isComplete = false
-                            //     copy.isCurrent = true
-                            //     EditProject(copy)
-                            //     setForm(true)
-                            //     setFunction(true)
-                            
-                            // }}
-                            >
+                        {/* <button className="pomo__btn">
                             Resume Project
-                        </button>
+                        </button> */}
 
 
-                        <button className="pomo__btn" 
+                        <button className="pomo__stored__delete" 
                          onClick={()=>{
                             tasks.forEach(task => {
                                 if(task.projectId === proj.id){

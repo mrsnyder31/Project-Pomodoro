@@ -17,6 +17,10 @@ export const UserView = ({settings, setSettings}) => {
     },[displaySettings])
 
     useEffect(()=>{
+       setDisplaySettings(settings)
+    },[settings])
+
+    useEffect(()=>{
         FetchProjects()
         .then((data) =>{
             const current = data.find(project => project.isCurrent)

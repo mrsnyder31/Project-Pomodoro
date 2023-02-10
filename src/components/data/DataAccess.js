@@ -69,4 +69,25 @@ export const PostUser = (customer) => {
     })
         .then(res => res.json())
 }
-    
+
+export const FetchSettings = () => {
+    return fetch("http://localhost:8088/settings")
+   .then(res => res.json())
+}
+
+export const PostSettings = (settings) => {
+    fetch("http://localhost:8088/settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(settings)
+    })
+}
+
+export const EditSettings = (settings) => {
+    return fetch(`http://localhost:8088/settings/1`, { 
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(settings)
+    })
+    .then(res => res.json())
+}
