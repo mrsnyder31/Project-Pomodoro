@@ -38,7 +38,7 @@ export const StoredProjects = () => {
 
     return <>
         <div className="pomo__stored__projects__container">
-        <h1> {PomoUser.name}'s Projects</h1>
+        <h1> My Projects</h1>
             {
                 projects.map(proj => {
                     if(PomoUser.id === proj.userId)
