@@ -5,7 +5,6 @@ import { TaskForm } from "./TaskForm"
 
 export const ProjectDisplay = ({setFunction, setForm}) => {
 
-    const navigate = useNavigate()
     const [task, setTask] = useState(false)
     const [trigger, setTrigger] = useState(false)
     const [taskObject, setTaskObject] = useState({
@@ -56,8 +55,7 @@ return  <>
                     }
                 })
         }
-        
-        
+               
         {
 
                 taskArray.map(tA => {
@@ -126,9 +124,8 @@ return  <>
 
         <>
 
-
-
         <TaskForm setTaskObject={setTaskObject} taskObject={taskObject} />
+
         <div className="btn_holder">
         
             <button className="pomo__btn" id="pomo__btn__cancel"
@@ -159,7 +156,6 @@ return  <>
 
         <>
 
-
         <button className="pomo__btn" id="pomo__btn__new__task" 
                 onClick={()=>{
                     setTask(true)
@@ -177,9 +173,7 @@ return  <>
                         DeleteProject(currentProject.id)
                         setFunction(false)
                         setForm(false)
-                     
-                        
-                       
+          
                     }}>
                 Delete Project
             </button>
@@ -199,9 +193,7 @@ return  <>
         </div>
         </>
     }
-
-
-         
+       
 </>
 
 }

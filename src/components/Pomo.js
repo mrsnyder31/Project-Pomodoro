@@ -4,7 +4,6 @@ import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import { EditSettings, FetchSettings } from "./data/DataAccess"
 import { NavBar } from "./nav/NavBar"
-
 import "./Pomo.css"
 import { ApplicationViews } from "./views/ApplicationView"
 import { Settings } from "./views/Settings"

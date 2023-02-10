@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import { DeleteProject, DeleteTask, EditProject, FetchProjects, FetchSettings, FetchTasks } from "../data/DataAccess"
 import { useNavigate } from "react-router-dom"
 
-
 export const StoredProjects = () => {
 
     const localPomoUser = localStorage.getItem("pomo_user")
@@ -15,7 +14,6 @@ export const StoredProjects = () => {
         setLogin(PomoUser)
     },[])
     
-    const navigate = useNavigate()
     const [projects, setProjects] = useState([])
     const [tasks, setTasks] = useState([])
 
@@ -37,7 +35,6 @@ export const StoredProjects = () => {
             setTasks(data)
         })
     },[trigger])
-
 
     return <>
         <div className="pomo__stored__projects__container">
@@ -72,10 +69,7 @@ export const StoredProjects = () => {
                             });
                             DeleteProject(proj.id)
                             setTrigger(!trigger)
-                            
-                         
-                            
-                           
+
                         }}>Delete Project</button>
                     </div>
                    
