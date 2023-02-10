@@ -1,6 +1,6 @@
 .navbar__container {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     justify-content: center;
     margin-top: 16px;
     margin-left: auto;
@@ -30,10 +30,18 @@
 
 .navbar__logout {
     margin-left: auto;
+    margin-right: 0px;
 }
 
 .navbar__home {
     margin-right: auto;
     margin-left: 0px;
+}
+
+.centerMe {
+    display: flex;
+    justify-content: center;
+    min-width: 400px;
+    max-width: 600px;
 }
 

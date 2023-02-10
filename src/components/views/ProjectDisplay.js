@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
-import { DeleteProject, DeleteTask, EditProject, FetchProjects, FetchTasks, PostTask } from "../data/DataAccess"
+import { useNavigate } from "react-router-dom"
+import { DeleteProject, DeleteTask, EditProject, EditTask, FetchProjects, FetchSettings, FetchTasks, PostTask } from "../data/DataAccess"
 import { TaskForm } from "./TaskForm"
 
 export const ProjectDisplay = ({setFunction, setForm}) => {
@@ -17,6 +18,7 @@ export const ProjectDisplay = ({setFunction, setForm}) => {
     const [projectArray, setProjectArray] = useState([])
     const [currentProject, setCurrentProject] = useState({})
 
+
     useEffect(()=>{
         FetchTasks()
         .then((data) => {
@@ -33,38 +35,81 @@ export const ProjectDisplay = ({setFunction, setForm}) => {
         })
     },[task, trigger])
 
+    
+
+    const Rerender = () => {
+      
+            setTask(false)
+            setTrigger(!trigger)
+    
+    }
+
 return  <>
     <div className="pomo__display__container">
 
         {
-
-            projectArray.map(pA => {
-                if (pA.id === currentProject?.id){
-                    return<div key={`projectMap--${pA.id}`} className="pomo__project__title"> <header>{pA.name}</header> </div>
-                }
-            })
+ 
+                projectArray.map(pA => {
+                    if (pA.id === currentProject.id){
+                        return<div key={`projectMap--${pA.id}`} className="pomo__project__title"> <header>{pA.name}</header> </div>
+                    }
+                })
         }
                
         {
 
-            taskArray.map(tA => {
-                if (tA.projectId === currentProject?.id){
-                    return<div key={`taskMapper--${tA.id}`} className="pomo__task__item">
-                        <button className="pomo__btn task__btn">{tA.name}</button>
-                        <button className="pomo__btn"
+                taskArray.map(tA => {
+                    if (tA.projectId === currentProject.id && tA.isComplete){
+                        return<div key={`taskMapper--${tA.id}`} className="pomo__task__item task__complete" >
+                            <button className="pomo__btn task__btn task__btn__complete"
+                            onClick={()=>{
+                                const copy = {...tA}
+                                copy.isComplete = false
+                                EditTask(copy)
+                                setTrigger(!trigger)
+                            }}>
+                                {tA.name} 
+                            </button>
+                            <button className="pomo__task__count pomo__btn"> Pomos: {tA.pomoCount}</button>
+                            <button className="pomo__btn"
+                                    onClick={()=>{
+                                       
+                                        DeleteTask(tA.id)
+
+                                        setTrigger(!trigger)
+
+                                    }}>
+                                x
+                            </button>
+                        </div>
+                    } 
+                    else if (tA.projectId === currentProject.id && !tA.isComplete){
+                            return<div key={`taskMapper--${tA.id}`} className="pomo__task__item">
+                                <button className="pomo__btn task__btn"
                                 onClick={()=>{
-                                    
-                                    DeleteTask(tA.id)
-                                    
+                                    const copy = {...tA}
+                                    copy.isComplete = true
+                                    EditTask(copy)
                                     setTrigger(!trigger)
-
-
                                 }}>
-                            x
-                        </button>
-                    </div>
-                }
-            })
+                                    {tA.name}
+                                </button>
+                                <button className="pomo__task__count pomo__btn">Pomos: {tA.pomoCount}</button>
+                                <button className="pomo__btn"
+                                        onClick={()=>{
+                                           
+                                            DeleteTask(tA.id)
+                                            
+                                            setTrigger(!trigger)
+    
+    
+                                        }}>
+                                    x
+                                </button>
+                            </div>
+                        }
+                    
+                })
         }
             
 
@@ -98,9 +143,9 @@ return  <>
                         copy.projectId = currentProject.id
                         PostTask(copy)
                         
-                        setTask(false)
-                        setTrigger(!trigger)
-
+                        Rerender()
+                    
+    
                     }}>
                 Save 
             </button>

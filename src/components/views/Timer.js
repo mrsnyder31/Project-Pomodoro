@@ -1,20 +1,45 @@
 import { useEffect, useState } from "react"
+import { FetchSettings } from "../data/DataAccess"
 
-export const Timer = () => {
 
-    const [time, setTime] = useState(25)
+export const Timer = ({displaySettings, setDisplaySettings}) => {
+
+    const [time, setTime] = useState(displaySettings.pomoTimer)
     const [paused, updatePause] = useState(false)
+    const [timerSettings, setTimerSettings] = useState(displaySettings)
 
     useEffect(() => {
+        
         document.getElementById("pomo__timer__text").innerHTML = `${time}:00`
-        if (time === 25) {
-            document.getElementById("root").style.backgroundColor = 'rgb(57, 112, 151)'
+
+        if (time === displaySettings.pomoTimer) {
+            document.getElementById("root").style.backgroundColor = displaySettings.pomoColor
+
         }
-        if (time === 5) {
-            document.getElementById("root").style.backgroundColor = 'rgb(125, 83, 162)'
+
+        if (time === displaySettings.breakTimer) {
+            document.getElementById("root").style.backgroundColor = displaySettings.breakColor
+           
         }
     },
         [time])
+
+        useEffect(()=>{
+            FetchSettings().then((data)=>{ document.getElementById("root").style.backgroundColor = data[0].pomoColor})
+            
+        },[])
+
+    useEffect(()=>{
+        
+        setDisplaySettings(timerSettings)
+    },[timerSettings])
+
+    useEffect(()=>{
+       
+        setTimerSettings(displaySettings)
+        
+    },[displaySettings])
+
 
     return <>
 
@@ -23,9 +48,11 @@ export const Timer = () => {
             <button className="pomo__btn" id="pomo__btn__main" onClick={
                 () => {
 
-                    setTime(25)
+                    setTime(displaySettings.pomoTimer)
                     SetMainStyles()
-                    document.getElementById("give__timer__too").innerHTML = `25:00 - Work Hard!`
+                    displaySettings.pomo = true
+                    document.getElementById("root").style.backgroundColor = displaySettings.pomoColor
+                    document.getElementById("give__timer__too").innerHTML = `${displaySettings.pomoTimer}:00 - Work Hard!`
                 }
             }>Pomo
             </button>
@@ -33,9 +60,11 @@ export const Timer = () => {
             <button className="pomo__btn" id="pomo__btn__break" onClick={
                 () => {
 
-                    setTime(5)
+                    setTime(displaySettings.breakTimer)
                     SetBreakStyles()
-                    document.getElementById("give__timer__too").innerHTML = `05:00 - Play Hard!`
+                    displaySettings.pomo = false
+                    document.getElementById("root").style.backgroundColor = displaySettings.breakColor
+                    document.getElementById("give__timer__too").innerHTML = `${displaySettings.breakTimer}:00 - Play Hard!`
                 }
             }>Break
             </button>
@@ -48,28 +77,29 @@ export const Timer = () => {
                     () => {
 
                         let minutes = time
-                        let seconds = 59
+                        let seconds = 60
 
                         
-                        const counter = setInterval(timer, 10)
+                        const counter = setInterval(timer, 1)
 
                         function timer() {
                             seconds--
-            
+                        
                             if (minutes <= 0 && seconds <= 0) {
                                 clearInterval(counter)
-                                if (time === 25) {
-                                    document.getElementById("pomo__timer__text").innerHTML = `05:00`
+                                if (time === displaySettings.pomoTimer) {
+                                
+                                    document.getElementById("pomo__timer__text").innerHTML = displaySettings.breakTimer
                                     document.getElementById("give__timer__too").innerHTML = `05:00 - Play Hard!`
-                                    setTime(5)
+                                    setTime(displaySettings.breakTimer)
                                     SetBreakStyles()
                                     document.getElementById("pomo__btn__start").innerHTML = 'Start'
                                     return
                                 }
-                                if (time === 5) {
-                                    document.getElementById("pomo__timer__text").innerHTML = `25:00`
+                                if (time === displaySettings.breakTimer) {
+                                    document.getElementById("pomo__timer__text").innerHTML = displaySettings.pomoTimer
                                     document.getElementById("give__timer__too").innerHTML = `25:00 - Work Hard!`
-                                    setTime(25)
+                                    setTime(displaySettings.pomoTimer)
                                     SetMainStyles()
                                     document.getElementById("pomo__btn__start").innerHTML = 'Start'
                                     return
@@ -77,7 +107,7 @@ export const Timer = () => {
                             }
                             if (seconds === 0) {
                                 minutes = minutes - 1
-                                seconds = 59
+                                seconds = 60
                             }
 
                             document.getElementById("pomo__timer__text").innerHTML = `${minutes}:${seconds}`
@@ -86,6 +116,7 @@ export const Timer = () => {
                         
                     }
                   
+
                     }
                 }>
                     Start</button>

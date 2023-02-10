@@ -21,7 +21,7 @@
     margin-top: 3%;
     text-align: center;
     min-width: 400px;
-    max-width: 500px;
+    max-width: 600px;
     
 }
 
@@ -75,7 +75,7 @@
     padding: 10px 0px;
     margin-bottom: 2%;
     min-width: 400px;
-    max-width: 500px;
+    max-width: 400px;
     text-align: center;
 }
 
@@ -166,6 +166,8 @@ input {
 
 .pomo__task__field__container{
     width: 90%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .pomo__task__field{
@@ -179,7 +181,8 @@ input {
     box-sizing: border-box;
     margin: 5px 0px;
     padding: 10px;
-
+    width: 50%;
+    
 }
 
 .pomo__project__title{
@@ -198,8 +201,12 @@ input {
 }
 .task__btn{
     font-size: 18px;
-    width: 100%;
+    width: 60%;
     text-align: left;
+    height: auto;
+    display: flex;
+    flex-direction: row wrap;
+
     
 }
 
@@ -209,6 +216,10 @@ input {
     border-radius: 6px;
     margin: 5px 0px;
     
+}
+.pomo__task__count{
+    width: 20%;
+    font-size: 11.1px;
 }
 
 .pomo__stored__projects__container {
@@ -225,6 +236,30 @@ input {
     margin: 10px;
     width: 35%;
 }
+.pomo__stored__item{
+    color: aliceblue;
+    border-bottom: 3px solid rgba(34, 30, 30, 0.473);
+    font-size: large;
+    padding: 5px 5px 0px;
+    margin: 5px;
+    width: fit-content;
+}
+
+.pomo__stored__delete{
+    border:none;
+    color: aliceblue;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 2px 12px;
+    height: 28px;
+    cursor: pointer;
+    background: none;
+    box-shadow: none;
+    font-weight: 300;
+    margin: 5px;
+    opacity: 0.9;
+    background: none rgba(255, 255, 255, 0.2);
+}
 
 .pomo__settings__container {
     display: flex;
@@ -232,4 +267,12 @@ input {
     min-height: 92.9vh;
     align-items: center;
     margin-top: 3%;
+}
+.task__btn__complete{
+    text-decoration: line-through;
+    
+}
+.task__complete{
+   
+    background: rgba(0, 0, 0, 0.15);
 }

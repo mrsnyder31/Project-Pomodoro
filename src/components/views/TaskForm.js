@@ -9,6 +9,14 @@ export const TaskForm = ({setTaskObject, taskObject}) => {
             const copy = {...taskObject}
             copy.name = evt.target.value
             setTaskObject(copy)
+        
+        }}/>
+        <input type="number" className="pomo__task__field" placeholder="Est. Pomo Count?" 
+        onChange={(evt)=>{
+            const copy = {...taskObject}
+            copy.pomoCount = parseInt(evt.target.value)
+            setTaskObject(copy)
+        
         }}/>
     </div>
     

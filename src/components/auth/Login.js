@@ -1,11 +1,17 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom"
+import { FetchSettings } from "../data/DataAccess";
 import "./Login.css"
 
 export const Login = () => {
     const [email, set] = useState("")
     const navigate = useNavigate()
+
+    useEffect(()=>{
+        FetchSettings().then((data)=>{ document.getElementById("root").style.backgroundColor = data[0].pomoColor})
+        
+    },[])
 
     const handleLogin = (e) => {
         e.preventDefault()
@@ -44,11 +50,11 @@ export const Login = () => {
                             placeholder="Email address"
                             required autoFocus />
                     
-                  
-                        <button className="pomo__btn" type="submit">
+                <section className="btn__container">
+                        <button className="btn__login" type="submit">
                             Sign in
                         </button>
-                  
+                </section> 
                 </form>
             </section>
             <section className="link--register">

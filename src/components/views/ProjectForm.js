@@ -1,7 +1,9 @@
 import { useState } from "react"
-import { PostProject } from "../data/DataAccess"
+import { PostProject} from "../data/DataAccess"
+
 
 export const ProjectForm = ({setFunction, setProject}) => {
+
 
     const localPomoUser = localStorage.getItem("pomo_user")
     const PomoUser = JSON.parse(localPomoUser)
@@ -24,24 +26,26 @@ return  <>
             setProjectObject(copy)
         }}/>
          
-        <div id="pomo__task__here"></div>   
-       
-        <button className="pomo__btn" onClick={()=>{
+
+        <div id="pomo__task__here"></div>
+    
         
-            setFunction(false)
-            }}>
-        Cancel
+        <button className="pomo__btn" onClick={()=>{
+            
+                setFunction(false)
+                }}>
+            Cancel
         </button>
 
         <button className="pomo__btn" id="pomo__btn__save" onClick={()=>{
-            
-            PostProject(projectObject)
-            setProject(true)
-            }}>
-        Save
+                
+                PostProject(projectObject)
+                setProject(true)
+                }}>
+            Save
         </button>
             
-     
+       
     </div>
 </div>
 </>

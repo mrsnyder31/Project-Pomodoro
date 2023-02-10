@@ -1,15 +1,20 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { PostUser } from "../data/DataAccess"
+import { FetchSettings, PostUser } from "../data/DataAccess"
 import "./Login.css"
 
-export const Register = (props) => {
+export const Register = () => {
     const [customer, setCustomer] = useState({
         email: "",
         name: "",
         
     })
     let navigate = useNavigate()
+
+    useEffect(()=>{
+        FetchSettings().then((data)=>{ document.getElementById("root").style.backgroundColor = data[0].pomoColor})
+        
+    },[])
 
     const registerNewUser = () => {
         return PostUser(customer)
@@ -32,11 +37,11 @@ export const Register = (props) => {
             .then(res => res.json())
             .then(response => {
                 if (response.length > 0) {
-                    // Duplicate email. No good.
+                   
                     window.alert("Account with that email address already exists")
                 }
                 else {
-                    // Good email, create user.
+                  
                     registerNewUser()
                 }
             })
@@ -49,25 +54,27 @@ export const Register = (props) => {
     }
 
     return (
-        <main style={{ textAlign: "center" }}>
-            <form className="form--login" onSubmit={handleRegister}>
+        <main className="pomo__container__register" style={{ textAlign: "center" }}>
+            <section>
                 <h1 className="h3 mb-3 font-weight-normal">Please Register for Project Pomodoro</h1>
-                <fieldset>
+            <form className="pomo__form__login" onSubmit={handleRegister}>
+                <section>
                     <label htmlFor="fullName"> Full Name </label>
                     <input onChange={updateCustomer}
                            type="text" id="name" className="form-control"
                            placeholder="Enter your name" required autoFocus />
-                </fieldset>
-                <fieldset>
+                </section>
+                <section>
                     <label htmlFor="email"> Email address </label>
                     <input onChange={updateCustomer}
                         type="email" id="email" className="form-control"
                         placeholder="Email address" required />
-                </fieldset>
-                <fieldset>
-                    <button type="submit"> Register </button>
-                </fieldset>
+                </section>
+                <section className="btn__container">
+                    <button className="btn__login" type="submit"> Register </button>
+                </section>
             </form>
+            </section>
         </main>
     )
 }

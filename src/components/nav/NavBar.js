@@ -19,22 +19,28 @@ export const NavBar = () => {
 
 
     
-        return <>
-            {
-                login 
-                ?
-                
-                <div className="navbar__container">
+    return <>
+        {
+            login 
+            ?
+            
+            <div className="navbar__container">
+
+            <div className="navbar__home">
                 <li className="navbar__item navbar__home">
                     <Link className="navbar__link" to="/">Home</Link>
                 </li>
+            </div>
+
+            <div className="centerMe">
                 <li className="navbar__item">
                     <Link className="navbar__link" to="/projects">Projects</Link>
                 </li>
                 <li className="navbar__item">
                     <Link className="navbar__link" to="/settings">Settings</Link>
                 </li>
-                
+            </div>
+            <div className="navbar__logout">
                 <li className="navbar__item navbar__logout">
                     <Link className="navbar__link" to="/login" onClick={() => {
                         localStorage.removeItem("pomo_user")
@@ -42,11 +48,12 @@ export const NavBar = () => {
                     }}>Logout</Link>
                 </li>
             </div>
-            :
-            <GuestNavBar />
-            }   
-        
-        
-        </>
+        </div>
+        :
+        <GuestNavBar />
+        }   
+    
+    
+    </>
 
 }
